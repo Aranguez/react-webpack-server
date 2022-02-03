@@ -1,21 +1,31 @@
 {
-  "name": "server",
+  "name": "pretty_husky",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "webpack serve --hot --open --mode development",
     "build": "webpack --config webpack.config.js --mode production",
+    "test": "jest",
     "pretty": "prettier --write --tab-width 4 \"src/**/*.js\""
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+  "lint-staged": {
+    "*.js": [
+      "npm run pretty"
+    ]
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aranguez/react-webpack-server"
+  },
+  "author": "Leandro Aranguez",
+  "license": "MIT",
+  "homepage": "https://github.com/Aranguez/react-webpack-server#readme",
   "devDependencies": {
+    "husky": "^4.2.3",
+    "jest": "^25.2.7",
+    "lint-staged": "^10.1.1",
+    "prettier": "^2.0.2",
     "@babel/core": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
@@ -23,24 +33,14 @@
     "css-loader": "^6.6.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
-    "husky": "^7.0.4",
-    "jest": "^27.4.7",
-    "lint-staged": "^12.3.3",
-    "prettier": "^2.5.1",
     "style-loader": "^3.3.1",
     "webpack": "^5.68.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4"
   },
-  "lint-staged": {
-    "*.js": [
-      "npm run pretty",
-      "git add"
-    ]
-  },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged && npm test"
     }
   }
 }
